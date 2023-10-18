@@ -22,13 +22,17 @@ countires_list.then((response)=>response.json())
 const weather_api_key = '170247ca112d65f3dc37cbe88e997f1d'; // Replace with your OpenWeatherMap API key
 const weather_api_url = 'https://api.openweathermap.org/data/2.5/weather';
 
-const content = create_element_groups('div',{'class':'row','id':'row-container'})
+const content = create_element_groups('div', { 'class': 'row', 'id': 'country-container' });
+const countryCards = [];
+
 function display_countries(data) {
     data.forEach((country) => {
-        const countryCard = create_element_groups('div', {'class': 'col-sm-6 col-md-4 col-lg-4 col-xl-4','id':'col-container'}, getCountry(country));
+        const countryCard = create_element_groups('div', { 'class': 'col-sm-6 col-md-4 col-lg-4 col-xl-4', 'id': 'col-container' }, getCountry(country));
         content.append(countryCard);
+        countryCards.push(countryCard);
     });
 }
+
 
 const getCountry=country=>{
     // console.log(country);
@@ -38,7 +42,7 @@ const getCountry=country=>{
         <div class="card-header">
             <h5 class="card-title  py-2">${country.name.common}</h5>
         </div>
-        <div class="body-con px-3">
+        <div class="body-con ">
             <div class="img-con mb-4">
             <img src="${country.flags.png}" class="card-img-top" alt="country-flag-image">
             </div>
@@ -48,8 +52,8 @@ const getCountry=country=>{
                     <span class="card-text">Region: ${country.region}</span><br>
                     <span class="card-text">Country-Code: ${country.altSpellings[0]}</span><br>
                     <div class="m-4" id="button">
-                        <button type="submit" class="btn btn-primary fetch-weather" data-country="${country.name.common}">Click for Weather</button>
-                        <div class="span-3" id="${country.name.common}-weather"> </div>
+                        <button type="submit" class="btn btn-primary fetch-weather mb-3" data-country="${country.name.common}">Click for Weather</button> <hr>
+                        <div class="span-3 text-center" py-2"  id="${country.name.common}-weather"> </div>
                     </div>
                 </div>
             </div>
@@ -85,16 +89,15 @@ function weather_content(countryName, weatherData) {
 
     if (weatherDiv) {
         if (weatherData && weatherData.main) {
-            // Update the content of the weather div with the weather data
             weatherDiv.innerHTML = `
-                Temperature: ${weatherData.main.temp}°C<br>
-                Description: ${weatherData.weather[0].description}
+            <p><img src="clouds.png" style="height: 30px;width: 20px;">Temperature: ${Math.round(weatherData.main.temp)}°C</p>
+            <p><img src="wind.png" style="height: 20px;"> wind: ${weatherData.wind.speed}km/h</p>
+            <p><img src="humidity.png" style="height: 20px;"> humidity: ${weatherData.main.humidity}%</p>
+            <p>Description: ${weatherData.weather[0].description}</p>
             `;
         } else if (weatherData.error) {
-            // Display the error message
             weatherDiv.textContent = weatherData.error;
         } else {
-            // Handle other error cases
             weatherDiv.textContent = "An error occurred while fetching weather data.";
         }
     }
@@ -102,10 +105,13 @@ function weather_content(countryName, weatherData) {
 
 
 
-
-const heading = create_element_groups('h1',{'id':'title','class':'text-center'},'Rest Countires Data')
+const serach_bar = create_element_groups('input',{'type':'serach','id':'search-bar','placeholder':'search countires','class':'form-control'})
+const serach_button = create_element_groups('button',{},'<img src="search.png" alt="">')
+const input_div = create_element_groups('div',{'class':'input-box'})
+input_div.append(serach_bar,serach_button)
+const heading = create_element_groups('h1',{'id':'title','class':'text-center'},'World Countries')
 const row_div = create_element_groups('div',{'class':'heading'})
-row_div.append(heading);
+row_div.append(heading,input_div);
 const boot_container = create_element_groups('div', { 'class': 'container'});
 boot_container.append(row_div,content)
 
@@ -114,3 +120,16 @@ main_container.append(boot_container);
 document.body.append(main_container);
 
 
+const search = document.querySelector("#search-bar")
+
+search.addEventListener('input', () => {
+    const searchText = search.value.toLowerCase();
+    countryCards.forEach((card) => {
+        const countryName = card.querySelector('.card-title').textContent.toLowerCase();
+        if (countryName.includes(searchText)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});

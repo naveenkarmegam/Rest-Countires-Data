@@ -4,7 +4,6 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-   
 }
 #main-container {
     background-color: rgba(0,0,0,0.7);
@@ -44,7 +43,8 @@ body {
     padding: 20px;
 }
 .body-con {
-    padding: 15px;
+    padding-top: 15px;
+    font-weight: bold;
 
 }
 .img-con {
@@ -54,11 +54,12 @@ body {
 }
 
 
-button { 
-background-color: red !important;
-border: 0 !important;
+button[type='submit'] { 
+    background-color: red !important;
+    border: 0 !important;
+    padding: 20px;
 }
-button:hover {
+button[type='submit']:hover {
     background-color: green !important;
     padding: 20px;
 }
@@ -68,4 +69,33 @@ button:hover {
         font-size: 2em;
     
     }
+}
+.input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+#search-bar{
+    width: 50%;
+    height: 60px;
+    background-color: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin-right: 16px;
+    font-size: 18px;
+}
+.input-box button {
+    border: 0;
+    outline: 0;
+    background-color: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+.input-box button img {
+    width: 16px;
 }
