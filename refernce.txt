@@ -1,0 +1,49 @@
+    <!-- <div class="container">
+        <div class="heading">
+            <h1 id="title" class="text-center">Rest countires Data</h1>
+        </div>
+        <div class="row my-5 d-flex justify-content-center align-items-center " id="card-conatianer"> -->
+            <!-- <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div> -->
+        <!-- </div>
+      </div>
+    </div> -->
+
+
+    // fetch('https://restcountries.com/v3.1/all')
+// .then((response)=>response.json())
+// .then((data)=> display_countires(data))
+
+
+// function display_countires(data) {
+//     const countries_list = data.map(country=>getcountry(country))
+
+//     document.getElementById('card-conatianer').innerHTML = countries_list
+// }
+
+// const getcountry=country=>{
+//     // console.log(country.name.official);
+//     return`
+//     <div class="card text-center card-has-bg my-4 mx-3 p-0" style="width: 18rem;">
+//     <h5 class="card-title  py-2">${country.name.common}</h5>
+//     <div class="body-con px-3">
+//         <img src="${country.flags.png}" class="card-img-top" alt="country-flag-image">
+//         <div class="card-body">
+//             <p class="card-text">Capital: ${country.capital}</p>
+//             <p class="card-text">Region: ${country.region}</p>
+//             <p class="card-text">Country-Code: ${country.altSpellings[0]}</p>
+//             <div id="button">
+//                 <a href="#" class="btn btn-primary">Go somewhere</a>
+//                 <div class="result p-5">weather </div>
+//             </div>
+//         </div>
+//     </div>
+//   </div>
+//     `
+// }
