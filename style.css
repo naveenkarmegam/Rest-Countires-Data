@@ -6,7 +6,7 @@ body {
     background-attachment: fixed;
 }
 #main-container {
-    background-color: rgba(0,0,0,0.7);
+    /* background-color: rgba(0,0,0,0.7); */
 }
 .card{
     text-align: center;
@@ -57,11 +57,11 @@ body {
 button[type='submit'] { 
     background-color: red !important;
     border: 0 !important;
-    padding: 20px;
+    padding: 10px;
 }
 button[type='submit']:hover {
     background-color: green !important;
-    padding: 20px;
+
 }
 
 @media screen and (max-width:600px) {
